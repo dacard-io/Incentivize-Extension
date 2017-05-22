@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+		<!-- Create a top level menu item -->
+		<bricks translate="title" module="bricks_incentivize">
+			<title>Incentivize</title>
+			<sort_order>15</sort_order>
+			<depends>
+				<module>Bricks_Incentivize</module>
+			</depends>
+			<!-- Create child menu item (link in dropdown) -->
+			<children>
+				<submitted>
+					<title>Submitted Emails</title>
+					<sort_order>1</sort_order>
+					<!-- When menu clicked, take user to this location -->
+					<action>incentivize/submitted</action>
+				</submitted>
+			</children>
+		</bricks>
+	</menu>
+	<!-- Add declarations for ACL(Access Control List) configurations. You will see the module when editing user roles -->
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<bricks translate="title" module="bricks_incentivize">
+						<title>IncentivizeAnything</title>
+						<sort_order>1</sort_order>
+						<children>
+							<submitted>
+								<title>Submitted Emails</title>
+							</submitted>
+						</children>
+					</bricks>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

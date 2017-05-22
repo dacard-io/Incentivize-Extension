@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<config>
+	<modules>
+		<!-- Notice the name spacing indicates the TutsPlus folder, and the Demo folder directory -->
+		<Bricks_Incentivize>
+			<active>true</active>
+			<codePool>community</codePool>
+		</Bricks_Incentivize>
+	</modules>
+</config>

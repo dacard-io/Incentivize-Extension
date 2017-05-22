@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<widgets>
+	<!-- Declare the name of the block file to use -->
+	<incentivize type="incentivize/form">
+		<name>Incentivize</name>
+		<description type="desc">Create an email input box for users to enter their emails for a chance to win a coupon.</description>
+	</incentivize>
+</widgets>

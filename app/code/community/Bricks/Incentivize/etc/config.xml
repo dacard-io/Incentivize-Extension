@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Bricks_Incentivize>
+			<!--
+			This is the version number of the module for our setup scripts to run. Their
+			version number must be less than or equal to this value in order to run.
+
+			When upgrade scripts are created, we increment this value. The next time
+			Magento is run, Magento will compare values in the DB table 'core_resource'
+			against this value. If the DB is lower, it will run any setup scripts for the
+			module and then update the database table to match the value
+			-->
+			<version>0.1.0</version>
+		</Bricks_Incentivize>
+	</modules>
+	<!-- Add a router for access to our admin panel controller -->
+	<admin>
+		<routers>
+			<!-- Define alias for router -->
+			<bricks_incentivize_admin>
+				<!-- Inform Magento to use admin scope for requests to this router -->
+				<use>admin</use>
+				<args>
+					<!-- Inform Magento on where to find adminhtml controllers for this module -->
+					<module>Bricks_Incentivize_Adminhtml</module>
+					<!-- The term used in the URL -->
+					<frontName>incentivize</frontName>
+				</args>
+			</bricks_incentivize_admin>
+		</routers>
+		<events>
+
+		</events>
+	</admin>
+	<global>
+		<models>
+			<incentivize>
+				<class>Bricks_Incentivize_Model</class>
+				<resourceModel>incentivize_mysql4</resourceModel> <!-- Load the model that loads MySQL data -->
+			</incentivize>
+			<incentivize_mysql4> <!-- This loads the resource in the mysql4 folder -->
+				<class>Bricks_Incentivize_Model_Mysql4</class>
+				<entities>
+					<users> <!-- This node will indicate the name of the model file to retrieve this information from -->
+						<table>incentivize</table>
+					</users>
+				</entities>
+			</incentivize_mysql4>
+		</models>
+		<blocks>
+			<incentivize>
+				<class>Bricks_Incentivize_Block</class>
+			</incentivize>
+			<!-- Add an adminhtml block definition -->
+			<bricks_incentivize_adminhtml>
+				<class>Bricks_Incentivize_Block_Adminhtml</class>
+			</bricks_incentivize_adminhtml>
+		</blocks>
+		<!-- Setup email template -->
+		<template>
+			<email>
+				<incentivize_email_template module="incentivize">
+					<label>Incentivize Email Template</label>
+					<file>incentivize_email_template.html</file>
+					<type>html</type>
+				</incentivize_email_template>
+			</email>
+		</template>
+		<helpers>
+			<bricks_incentivize>
+				<class>Bricks_Incentivize_Helper</class>
+			</bricks_incentivize>
+		</helpers>
+		<!-- Load up install script for setting up new Database table -->
+		<resources>
+			<incentivize_setup>
+				<setup>
+					<!-- Which module do the setup scripts in this location belong to -->
+					<module>Bricks_Incentivize</module>
+					<!-- Within each setup script, this value determines the class of $this -->
+					<class>Bricks_Incentivize_Model_Resource_Mysql4_Setup</class>
+				</setup>
+				<!-- Only use this if you have multiple DB connections -->
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</incentivize_setup>
+			<!-- Allow reading/writing to incentivize table in the database -->
+			<incentivize_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</incentivize_write>
+
+			<incentivize_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</incentivize_read>
+		</resources>
+	</global>
+</config>
